@@ -1,0 +1,53 @@
+### Personal Diary API Tests
+
+@baseUrl = http://localhost:5000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmVkODNiN2EwMjY4ZGIxMjE5MmZhMCIsImlhdCI6MTc3ODMwOTMyNywiZXhwIjoxNzc4Mzk1NzI3fQ.jAAWLE5RKQF06FBkVen_YO9ApCNMKoaKLmMdCBLhJQw
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Hilmi",
+  "email": "hilmi@example.com",
+  "password": "password123"
+}
+
+### 2. LOGIN USER
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "hilmi@example.com",
+  "password": "password123"
+}
+
+### 3. CREATE DIARY ENTRY
+POST {{baseUrl}}/api/diaries/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "My 14 Diary Entry",
+  "content": "Today was REST Client training so happy!"
+}
+
+### 4. GET ALL DIARIES
+GET {{baseUrl}}/api/diaries/
+Authorization: Bearer {{token}}
+
+### 5. GET DIARY BY ID
+GET {{baseUrl}}/api/diaries/69fed8f97a0268db12192fa1
+Authorization: Bearer {{token}}
+
+### 6. UPDATE DIARY
+PUT {{baseUrl}}/api/diaries/69fed8f97a0268db12192fa1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Updated My 14 Diary Entry",
+  "content": "Today was a hard day"
+}
+
+### 7. DELETE DIARY
+DELETE {{baseUrl}}/api/diaries/69fed8f97a0268db12192fa1
+Authorization: Bearer {{token}}
